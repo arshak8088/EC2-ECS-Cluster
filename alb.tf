@@ -16,14 +16,14 @@ resource "aws_alb_listener" "front_end" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_alb_target_group.nginx.id
+    target_group_arn = aws_alb_target_group.node.id
     type             = "forward"
   }
 }
 
-resource "aws_alb_target_group" "nginx" {
-  name       = "nginx"
-  port       = 80
+resource "aws_alb_target_group" "node" {
+  name       = "node"
+  port       = 3000
   protocol   = "HTTP"
   vpc_id     = aws_vpc.demo-tf.id
   depends_on = [aws_alb.demo_eu_alb]
